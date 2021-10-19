@@ -1,7 +1,9 @@
 #### Contact If Error/ Hubungi Jika Error
 >
 Nama Athour : [**Mr.Risky**](https://github.com/Dumai-991)
->Terima Kasih Kepada : Zee K World, WansXGans
+> Terima Kasih Kepada : 
+Zee K World, WansXGans
+
 >
 1. Via WhatsApp : [**WhatsApp**](https://wa.me/6283143565470)
 2. Via Facebook : [**Facebook**](https://fb.me/llovexnxx)
