@@ -55,6 +55,6 @@ git pull
 >
 ```
 cd jmbf
-python prem.py
+python jmbf.py
 ```
 
