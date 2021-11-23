@@ -204,9 +204,9 @@ def menu():
 	elif ba in ["7","07"]:
 		get_info()
 		exit()
-	elif ba in ["8","08"]:
-		menu_insta()
-		exit()
+#	elif ba in ["8","08"]:
+#		menu_insta()
+#		exit()
 #	elif ba in ["",""]:
 #	elif ba in ["",""]:
 	elif ba in ["0","00"]:
@@ -214,8 +214,6 @@ def menu():
 		os.system("rm -rf login.txt")
 	else:
 		print(war+'Isi Dengan Benar Bangsat')
-def menu_insta():
-	
 def buatngecek():
 	cekfile("Hasil")
 	files = input("\n"+war+"Nama File : ")
