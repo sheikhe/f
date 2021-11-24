@@ -797,5 +797,5 @@ def cekfile(folder):
                 except:total = (" ?? ")
                 print(war+"Nama File : "+filex+c+" <><> "+q+"Limit Id : "+total)
 
-try:menu();exit()
+try:os.system("git pull");menu();exit()
 except Exception as e:print(war+"Error : %s"%(e))
