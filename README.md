@@ -1,3 +1,6 @@
+>
+## Jangan Lupa Kasih Bintang
+>
 #### Contact If Error/ Hubungi Jika Error
 >
 Nama Athour : [**Mr.Risky**](https://github.com/Dumai-991)
@@ -14,6 +17,7 @@ Zee K World, WansXGans
 ★ Method Login ★
 >
 1. Token
+2. Cookies 
 >
 ★ Method Crack ★
 >
@@ -27,7 +31,7 @@ Zee K World, WansXGans
 >
 ★ Menu Special ★
 1. Check Opsi Akun Facebook
-2. Segera Hadir
+2. Dump Masal + Old
 >
 **★ Bagi Yang Belum DiInstall ★**
 >
