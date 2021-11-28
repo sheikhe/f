@@ -30,8 +30,9 @@ Zee K World, WansXGans
 3. Dump Dari Teman + Pengikut/Public + Follow
 >
 ★ Menu Special ★
-1. Check Opsi Akun Facebook
+1. Check Opsi Akun Facebook + CEK APK
 2. Dump Masal + Old
+3. Check Jumlah Teman
 >
 **★ Bagi Yang Belum DiInstall ★**
 >
