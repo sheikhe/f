@@ -1050,7 +1050,7 @@ class crackmenu:
                 except:
                     pass
                 if opsii == "y" or "y" == opsii:
-                    sttt(user, pw)
+                    sttt(user, pw, dob)
                 else:
                     print ('\r%s[%s%s%s] %s%s|%s                  %s'%(Q,C,datetime.now().strftime('%H:%M:%S'),Q,K,user,pw,Q))
                 wrt = ('%s|%s'%(user,pw))
