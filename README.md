@@ -23,6 +23,7 @@ Zee K World, WansXGans
 ★ Method Crack ★
 >
 1. B-Api + Useragent Tap Yes 100%
+2. MBasic + Useragent Tap Yes 99%
 >
 ★ Menu Dump ★
 >
