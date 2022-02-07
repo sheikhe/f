@@ -32,10 +32,8 @@ pip install bs4
 git clone https://github.com/Dumai-991/jmbf
 cd jmbf
 git pull
-python3 -m pip install -r requirements.txt
+python3 -m pip install -r requests_pake.txt
 python setup.py build_ext --inplace
-
-
 ```
 >
 ★ **Bagi Yang Sudah Install Bahan** ★
@@ -43,12 +41,15 @@ python setup.py build_ext --inplace
 ```
 cd jmbf
 git pull
+rm -rf *.so
+python setup.py build_ext --inplace
+python run.py
 ```
 >
 **★ Cara Jalankan Script ★**
 >
 ```
 cd jmbf
-python jmbf.py
+python run.py
 ```
 
