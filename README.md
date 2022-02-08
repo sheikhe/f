@@ -32,7 +32,6 @@ git clone https://github.com/Dumai-991/jmbf
 cd jmbf
 git pull
 python3 -m pip install -r requests_pake.txt
-python setup.py build_ext --inplace
 ```
 >
 ★ **Bagi Yang Sudah Install Bahan** ★
@@ -40,16 +39,14 @@ python setup.py build_ext --inplace
 ```
 cd jmbf
 git pull
-rm -rf *.so
-python setup.py build_ext --inplace
-python run.py
+python jmbf.py
 ```
 >
 **★ Cara Jalankan Script ★**
 >
 ```
 cd jmbf
-python run.py
+python jmbf.py
 ```
 
 ![](https://raw.githubusercontent.com/Dumai-991/jmbf/Xnxx/Foto/Screenshot_2021-12-22-15-37-07-69.jpg)
